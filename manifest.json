@@ -1,0 +1,26 @@
+{
+  "name": "Git 命令大全",
+  "short_name": "Git大全",
+  "description": "Git 命令速查表 —— 14大类、40+条命令，离线可用",
+  "start_url": "/git-pwa-cheat/",
+  "scope": "/git-pwa-cheat/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f6f8fa",
+  "theme_color": "#1f2328",
+  "lang": "zh-CN",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

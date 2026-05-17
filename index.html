@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Git 命令大全</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1f2328">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Git命令大全">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="icon" href="icon-192.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============ SIDEBAR ============ -->
+<nav>
+  <h2>📋 Git 命令大全</h2>
+  <a href="#cat-repo">🏠 仓库管理 <span class="count">3</span></a>
+  <a href="#cat-basic">📝 基本工作流 <span class="count">4</span></a>
+  <a href="#cat-branch">🌿 分支管理 <span class="count">5</span></a>
+  <a href="#cat-remote">☁️ 远程协作 <span class="count">3</span></a>
+  <a href="#cat-undo">↩️ 撤销与回退 <span class="count">4</span></a>
+  <a href="#cat-history">🔍 查看历史 <span class="count">4</span></a>
+  <a href="#cat-tag">🏷️ 标签管理 <span class="count">1</span></a>
+  <a href="#cat-submodule">📦 子模块 <span class="count">1</span></a>
+  <a href="#cat-worktree">🌲 工作树 <span class="count">1</span></a>
+  <a href="#cat-config">⚙️ 配置管理 <span class="count">1</span></a>
+  <a href="#cat-rewrite">🔄 历史重写 <span class="count">2</span></a>
+  <a href="#cat-clean">🧹 清理维护 <span class="count">3</span></a>
+  <a href="#cat-patch">📨 补丁归档 <span class="count">4</span></a>
+  <a href="#cat-workflow">💡 常用工作流 <span class="count">7</span></a>
+  <a href="#cat-ignore">🚫 .gitignore <span class="count">1</span></a>
+</nav>
+
+<!-- ============ MAIN ============ -->
+<main>
+
+<div class="search-bar">
+  <input type="text" id="search" placeholder="🔍  搜索命令或描述，例如：rebase、分支、撤销、stash...">
+</div>
+<div class="no-result" id="noResult">没有匹配的命令</div>
+
+<!-- ============ 一、仓库管理 ============ -->
+<section class="category" id="cat-repo" data-cat="仓库管理">
+<h3><span class="icon">🏠</span>仓库管理</h3>
+
+<div class="cmd">
+  <div class="cmd-header">
+    <span class="cmd-name">git init</span>
+    <span class="cmd-desc">初始化一个新的 Git 仓库</span>
+    <span class="cmd-arrow">▶</span>
+  </div>
+  <div class="cmd-body"><table>
+    <tr><td>git init</td><td>在当前目录初始化</td></tr>
+    <tr><td>git init &lt;dir&gt;</td><td>在指定目录初始化</td></tr>
+    <tr><td>git init --bare &lt;dir&gt;</td><td>初始化裸仓库（用于远程共享）</td></tr>
+  </table></div>
+</div>
+
+<div class="cmd">
+  <div class="cmd-header">
+    <span class="cmd-name">git clone</span>
+    <span class="cmd-desc">克隆远程仓库到本地</span>
+    <span class="cmd-arrow">▶</span>
+  </div>
+  <div class="cmd-body"><table>
+    <tr><td>git clone &lt;url&gt;</td><td>克隆远程仓库</td></tr>
+    <tr><td>git clone &lt;url&gt; &lt;dir&gt;</td><td>克隆到指定目录</td></tr>
+    <tr><td>git clone -b &lt;branch&gt; &lt;url&gt;</td><td>克隆指定分支</td></tr>
+    <tr><td>git clone --depth 1 &lt;url&gt;</td><td>浅克隆（只拉取最新一次提交）</td></tr>
+    <tr><td>git clone --recursive &lt;url&gt;</td><td>同时克隆子模块</td></tr>
+  </table></div>
+</div>
+
+<div class="cmd">
+  <div class="cmd-header">
+    <span class="cmd-name">git remote</span>
+    <span class="cmd-desc">管理远程仓库连接</span>
+    <span class="cmd-arrow">▶</span>
+  </div>
+  <div class="cmd-body"><table>
+    <tr><td>git remote -v</td><td>查看所有远程仓库及 URL</td></tr>
+    <tr><td>git remote add &lt;name&gt; &lt;url&gt;</td><td>添加远程仓库</td></tr>
+    <tr><td>git remote remove &lt;name&gt;</td><td>移除远程仓库</td></tr>
+    <tr><td>git remote rename &lt;old&gt; &lt;new&gt;</td><td>重命名远程仓库</td></tr>
+    <tr><td>git remote set-url &lt;name&gt; &lt;url&gt;</td><td>修改远程仓库 URL</td></tr>
+    <tr><td>git remote show &lt;name&gt;</td><td>查看远程仓库详细信息</td></tr>
+    <tr><td>git remote prune &lt;name&gt;</td><td>清理已删除的远程分支引用</td></tr>
+  </table></div>
+</div>
+
+</section>
+
+<!-- ============ 二、基本工作流 ============ -->
+<section class="category" id="cat-basic" data-cat="基本工作流">
+<h3><span class="icon">📝</span>基本工作流</h3>
+
+<div class="cmd">
+  <div class="cmd-header">
+    <span class="cmd-name">git status</span>
+    <span class="cmd-desc">查看工作区和暂存区状态</span>
+    <span class="cmd-arrow">▶</span>
+  </div>
+  <div class="cmd-body"><table>
+    <tr><td>git status</td><td>查看状态</td></tr>
+    <tr><td>git status -s</td><td>简短格式输出</td></tr>
+    <tr><td>git status -sb</td><td>简短格式 + 当前分支信息</td></tr>
+    <tr><td>git status --ignored</td><td>同时显示被忽略的文件</td></tr>
+  </table></div>
+</div>
+
+<div class="cmd">
+  <div class="cmd-header">
+    <span class="cmd-name">git add</span>
+    <span class="cmd-desc">将文件添加到暂存区</span>
+    <span class="cmd-arrow">▶</span>
+  </div>
+  <div class="cmd-body"><table>
+    <tr><td>git add &lt;file&gt;</td><td>暂存指定文件</td></tr>
+    <tr><td>git add &lt;dir&gt;</td><td>暂存整个目录</td></tr>
+    <tr><td>git add .</td><td>暂存当前目录所有更改</td></tr>
+    <tr><td>git add -A</td><td>暂存所有更改（包括删除）</td></tr>
+    <tr><td>git add -p</td><td>交互式选择暂存（逐块确认）</td></tr>
+    <tr><td>git add -u</td><td>只暂存已跟踪文件的修改和删除</td></tr>
+  </table></div>
+</div>
+
+<div class="cmd">
+  <div class="cmd-header">
+    <span class="cmd-name">git commit</span>
+    <span class="cmd-desc">提交暂存区的更改</span>
+    <span class="cmd-arrow">▶</span>
+  </div>
+  <div class="cmd-body"><table>
+    <tr><td>git commit -m "msg"</td><td>提交并附带消息</td></tr>
+    <tr><td>git commit -a -m "msg"</td><td>跳过暂存，直接提交已跟踪文件的修改</td></tr>
+    <tr><td>git commit --amend</td><td>修改最近一次提交（追加到上一次）</td></tr>
+    <tr><td>git commit --amend -m "new"</td><td>修改最近一次提交的消息</td></tr>
+    <tr><td>git commit --amend --no-edit</td><td>追加更改但不修改消息</td></tr>
+    <tr><td>git commit -m "title" -m "body"</td><td>标题 + 正文</td></tr>
+    <tr><td>git commit --allow-empty</td><td>允许空提交</td></tr>
+  </table></div>
+</div>
+
+<div class="cmd">
+  <div class="cmd-header">
+    <span class="cmd-name">git log</span>
+    <span class="cmd-desc">查看提交历史</span>
+    <span class="cmd-arrow">▶</span>
+  </div>
+  <div class="cmd-body"><table>
+    <tr><td>git log</td><td>查看提交历史</td></tr>
+    <tr><td>git log --oneline</td><td>每行显示一条简洁提交</td></tr>
+    <tr><td>git log --oneline --graph --all</td><td>图形化显示所有分支历史 ⭐</td></tr>
+    <tr><td>git log -p</td><td>显示每次提交的差异</td></tr>
+    <tr><td>git log --stat</td><td>显示每次提交的文件变更统计</td></tr>
+    <tr><td>git log -&lt;n&gt;</td><td>只显示最近 n 次提交</td></tr>
+    <tr><td>git log --author="name"</td><td>按作者过滤</td></tr>
+    <tr><td>git log --since="2024-01-01"</td><td>按日期过滤</td></tr>
+    <tr><td>git log --grep="keyword"</td><td>按提交消息关键词过滤</td></tr>
+    <tr><td>git log -S "code"</td><td>搜索添加/删除了特定代码的提交</td></tr>
+    <tr><td>git log branch1..branch2</td><td>branch2 有但 branch1 没有的提交</td></tr>
+  </table></div>
+</div>
+
+</section>
+
+<!-- ============ 三、分支管理 ============ -->
+<section class="category" id="cat-branch" data-cat="分支管理">
+<h3><span class="icon">🌿</span>分支管理</h3>
+
+<div class="cmd">
+  <div class="cmd-header">
+    <span class="cmd-name">git branch</span>
+    <span class="cmd-desc">管理分支</span>
+    <span class="cmd-arrow">▶</span>
+  </div>
+  <div class="cmd-body"><table>
+    <tr><td>git branch</td><td>列出本地分支</td></tr>
+    <tr><td>git branch -a</td><td>列出所有分支（含远程）</td></tr>
+    <tr><td>git branch -r</td><td>只列出远程分支</td></tr>
+    <tr><td>git branch -vv</td><td>查看本地分支与远程的关联</td></tr>
+    <tr><td>git branch &lt;name&gt;</td><td>创建分支</td></tr>
+    <tr><td>git branch &lt;name&gt; &lt;commit&gt;</td><td>从指定提交创建分支</td></tr>
+    <tr><td>git branch -d &lt;name&gt;</td><td>删除已合并的分支</td></tr>
+    <tr><td>git branch -D &lt;name&gt;</td><td>强制删除分支</td></tr>
+    <tr><td>git branch -m &lt;old&gt; &lt;new&gt;</td><td>重命名分支</td></tr>
+    <tr><td>git branch --merged</td><td>查看已合并到当前分支的分支</td></tr>
+    <tr><td>git branch --no-merged</td><td>查看未合并到当前分支的分支</td></tr>
+  </table></div>
+</div>
+
+<div class="cmd">
+  <div class="cmd-header">
+    <span class="cmd-name">git switch</span>
+    <span class="cmd-desc">切换分支（Git 2.23+）<span class="tag tag-new">新</span></span>
+    <span class="cmd-arrow">▶</span>
+  </div>
+  <div class="cmd-body"><table>
+    <tr><td>git switch &lt;branch&gt;</td><td>切换到已有分支</td></tr>
+    <tr><td>git switch -c &lt;name&gt;</td><td>创建并切换到新分支</td></tr>
+    <tr><td>git switch -c &lt;name&gt; &lt;commit&gt;</td><td>从指定提交创建并切换</td></tr>
+    <tr><td>git switch -</td><td>切换到上一个分支</td></tr>
+  </table></div>
+</div>
+
+<div class="cmd">
+  <div class="cmd-header">
+    <span class="cmd-name">git checkout</span>
+    <span class="cmd-desc">切换分支 / 恢复文件</span>
+    <span class="cmd-arrow">▶</span>
+  </div>
+  <div class="cmd-body"><table>
+    <tr><td>git checkout &lt;branch&gt;</td><td>切换分支</td></tr>
+    <tr><td>git checkout -b &lt;name&gt;</td><td>创建并切换到新分支</td></tr>
+    <tr><td>git checkout -</td><td>切换到上一个分支</td></tr>
+    <tr><td>git checkout &lt;commit&gt;</td><td>切换到指定提交（分离 HEAD）</td></tr>
+    <tr><td>git checkout -- &lt;file&gt;</td><td>丢弃工作区更改（恢复文件）</td></tr>
+    <tr><td>git checkout &lt;commit&gt; -- &lt;file&gt;</td><td>恢复文件到指定提交的状态</td></tr>
+  </table></div>
+</div>
+
+<div class="cmd">
+  <div class="cmd-header">
+    <span class="cmd-name">git merge</span>
+    <span class="cmd-desc">合并分支</span>
+    <span class="cmd-arrow">▶</span>
+  </div>
+  <div class="cmd-body"><table>
+    <tr><td>git merge &lt;branch&gt;</td><td>将指定分支合并到当前分支</td></tr>
+    <tr><td>git merge --no-ff &lt;branch&gt;</td><td>强制生成合并提交（禁用快进）</td></tr>
+    <tr><td>git merge --ff-only &lt;branch&gt;</td><td>只在能快进时才合并</td></tr>
+    <tr><td>git merge --squash &lt;branch&gt;</td><td>压缩合并（所有更改合并为一个提交）</td></tr>
+    <tr><td>git merge --abort</td><td>取消正在进行的合并</td></tr>
+    <tr><td>git merge --continue</td><td>解决冲突后继续合并</td></tr>
+  </table></div>
+</div>
+
+<div class="cmd">
+  <div class="cmd-header">
+    <span class="cmd-name">git rebase</span>
+    <span class="cmd-desc">变基 —— 将提交应用到另一个分支的顶端</span>
+    <span class="cmd-arrow">▶</span>
+  </div>
+  <div class="cmd-body"><table>
+    <tr><td>git rebase &lt;branch&gt;</td><td>将当前分支变基到指定分支</td></tr>
+    <tr><td>git rebase -i &lt;commit&gt;</td><td>交互式变基 ⭐（合并/编辑/删除提交）</td></tr>
+    <tr><td>git rebase --continue</td><td>解决冲突后继续变基</td></tr>
+    <tr><td>git rebase --abort</td><td>取消变基</td></tr>
+    <tr><td>git rebase --skip</td><td>跳过当前提交</td></tr>
+    <tr><td>git rebase --onto &lt;new&gt; &lt;old&gt;</td><td>将分支 old 之后的提交移到 new</td></tr>
+    <tr><td colspan="2" style="color:var(--purple);padding-top:6px;">
+      <b>交互模式命令：</b> pick(保留) reword(改消息) edit(修改内容) squash(合并) fixup(合并+丢弃消息) drop(删除)
+    </td></tr>
+  </table></div>
+</div>
+
+</section>
+
+<!-- ============ 四、远程协作 ============ -->
+<section class="category" id="cat-remote" data-cat="远程协作">
+<h3><span class="icon">☁️</span>远程协作</h3>
+
+<div class="cmd">
+  <div class="cmd-header">
+    <span class="cmd-name">git push</span>
+    <span class="cmd-desc">推送本地提交到远程仓库</span>
+    <span class="cmd-arrow">▶</span>
+  </div>
+  <div class="cmd-body"><table>
+    <tr><td>git push</td><td>推送到默认远程的当前分支</td></tr>
+    <tr><td>git push &lt;remote&gt; &lt;branch&gt;</td><td>推送到指定远程的指定分支</td></tr>
+    <tr><td>git push -u &lt;remote&gt; &lt;branch&gt;</td><td>推送并设置上游跟踪</td></tr>
+    <tr><td>git push --all &lt;remote&gt;</td><td>推送所有本地分支</td></tr>
+    <tr><td>git push --tags</td><td>推送所有标签</td></tr>
+    <tr><td>git push -d &lt;remote&gt; &lt;branch&gt;</td><td>删除远程分支</td></tr>
+    <tr><td>git push --force</td><td>强制推送 <span class="tag tag-danger">危险</span></td></tr>
+    <tr><td>git push --force-with-lease</td><td>更安全的强制推送（推荐）</td></tr>
+  </table></div>
+</div>
+
+<div class="cmd">
+  <div class="cmd-header">
+    <span class="cmd-name">git fetch</span>
+    <span class="cmd-desc">从远程获取更新但不合并</span>
+    <span class="cmd-arrow">▶</span>
+  </div>
+  <div class="cmd-body"><table>
+    <tr><td>git fetch</td><td>从默认远程获取所有更新</td></tr>
+    <tr><td>git fetch &lt;remote&gt;</td><td>从指定远程获取</td></tr>
+    <tr><td>git fetch &lt;remote&gt; &lt;branch&gt;</td><td>获取指定分支</td></tr>
+    <tr><td>git fetch --all</td><td>从所有远程获取</td></tr>
+    <tr><td>git fetch --prune</td><td>同时清理已删除的远程分支引用</td></tr>
+  </table></div>
+</div>
+
+<div class="cmd">
+  <div class="cmd-header">
+    <span class="cmd-name">git pull</span>
+    <span class="cmd-desc">从远程拉取并合并（= fetch + merge）</span>
+    <span class="cmd-arrow">▶</span>
+  </div>
+  <div class="cmd-body"><table>
+    <tr><td>git pull</td><td>拉取并合并</td></tr>
+    <tr><td>git pull &lt;remote&gt; &lt;branch&gt;</td><td>拉取指定远程的指定分支</td></tr>
+    <tr><td>git pull --rebase</td><td>拉取并变基（= fetch + rebase，推荐 ⭐）</td></tr>
+    <tr><td>git pull --rebase --autostash</td><td>变基前自动 stash 本地更改</td></tr>
+    <tr><td>git pull --ff-only</td><td>只在能快进时才合并</td></tr>
+  </table></div>
+</div>
+
+</section>
+
+<!-- ============ 五、撤销与回退 ============ -->
+<section class="category" id="cat-undo" data-cat="撤销与回退">
+<h3><span class="icon">↩️</span>撤销与回退</h3>
+
+<div class="cmd">
+  <div class="cmd-header">
+    <span class="cmd-name">git reset</span>
+    <span class="cmd-desc">重置 HEAD 到指定状态</span>
+    <span class="cmd-arrow">▶</span>
+  </div>
+  <div class="cmd-body"><table>
+    <tr><td>git reset --soft &lt;commit&gt;</td><td>只移动 HEAD，更改保留在暂存区</td></tr>
+    <tr><td>git reset --soft HEAD~1</td><td>撤销最近一次 commit，更改保留在暂存区</td></tr>
+    <tr><td>git reset &lt;commit&gt;</td><td>移动 HEAD，重置暂存区，保留工作区（默认）</td></tr>
+    <tr><td>git reset HEAD &lt;file&gt;</td><td>取消暂存指定文件</td></tr>
+    <tr><td>git reset --hard &lt;commit&gt;</td><td>完全回退，丢弃所有更改 <span class="tag tag-danger">危险</span></td></tr>
+    <tr><td>git reset --hard origin/main</td><td>重置到远程 main 分支的状态</td></tr>
+  </table></div>
+</div>
+
+<div class="cmd">
+  <div class="cmd-header">
+    <span class="cmd-name">git revert</span>
+    <span class="cmd-desc">创建新提交来撤销某次提交（安全，不修改历史）</span>
+    <span class="cmd-arrow">▶</span>
+  </div>
+  <div class="cmd-body"><table>
+    <tr><td>git revert &lt;commit&gt;</td><td>撤销指定提交</td></tr>
+    <tr><td>git revert &lt;c1&gt;..&lt;c2&gt;</td><td>撤销一个范围内的提交</td></tr>
+    <tr><td>git revert -n &lt;commit&gt;</td><td>撤销但不自动提交</td></tr>
+    <tr><td>git revert --continue</td><td>解决冲突后继续</td></tr>
+    <tr><td>git revert --abort</td><td>取消撤销</td></tr>
+  </table></div>
+</div>
+
+<div class="cmd">
+  <div class="cmd-header">
+    <span class="cmd-name">git restore</span>
+    <span class="cmd-desc">恢复文件（Git 2.23+）<span class="tag tag-new">新</span></span>
+    <span class="cmd-arrow">▶</span>
+  </div>
+  <div class="cmd-body"><table>
+    <tr><td>git restore &lt;file&gt;</td><td>丢弃工作区更改</td></tr>
+    <tr><td>git restore --staged &lt;file&gt;</td><td>取消暂存</td></tr>
+    <tr><td>git restore --source &lt;commit&gt; &lt;file&gt;</td><td>从指定提交恢复文件</td></tr>
+    <tr><td>git restore -SW &lt;file&gt;</td><td>同时取消暂存并丢弃工作区更改</td></tr>
+  </table></div>
+</div>
+
+<div class="cmd">
+  <div class="cmd-header">
+    <span class="cmd-name">git stash</span>
+    <span class="cmd-desc">暂存当前工作区的修改</span>
+    <span class="cmd-arrow">▶</span>
+  </div>
+  <div class="cmd-body"><table>
+    <tr><td>git stash</td><td>暂存当前修改</td></tr>
+    <tr><td>git stash push -m "msg"</td><td>暂存并添加描述</td></tr>
+    <tr><td>git stash push -u</td><td>暂存时包含未跟踪文件</td></tr>
+    <tr><td>git stash list</td><td>列出所有暂存</td></tr>
+    <tr><td>git stash pop</td><td>恢复最近的暂存并删除记录</td></tr>
+    <tr><td>git stash apply</td><td>恢复最近的暂存但不删除记录</td></tr>
+    <tr><td>git stash drop stash@{n}</td><td>删除指定暂存</td></tr>
+    <tr><td>git stash clear</td><td>清空所有暂存</td></tr>
+    <tr><td>git stash branch &lt;name&gt;</td><td>从暂存创建新分支</td></tr>
+    <tr><td>git stash show -p</td><td>查看最近暂存的完整差异</td></tr>
+  </table></div>
+</div>
+
+</section>
+
+<!-- ============ 六、查看历史 ============ -->
+<section class="category" id="cat-history" data-cat="查看历史">
+<h3><span class="icon">🔍</span>查看历史与追溯</h3>
+
+<div class="cmd">
+  <div class="cmd-header">
+    <span class="cmd-name">git show</span>
+    <span class="cmd-desc">查看提交详情</span>
+    <span class="cmd-arrow">▶</span>
+  </div>
+  <div class="cmd-body"><table>
+    <tr><td>git show</td><td>查看最新提交的详情</td></tr>
+    <tr><td>git show &lt;commit&gt;</td><td>查看指定提交</td></tr>
+    <tr><td>git show &lt;commit&gt;:&lt;file&gt;</td><td>查看某提交中某个文件的内容</td></tr>
+    <tr><td>git show --stat &lt;commit&gt;</td><td>查看提交的文件变更统计</td></tr>
+  </table></div>
+</div>
+
+<div class="cmd">
+  <div class="cmd-header">
+    <span class="cmd-name">git diff</span>
+    <span class="cmd-desc">查看文件差异</span>
+    <span class="cmd-arrow">▶</span>
+  </div>
+  <div class="cmd-body"><table>
+    <tr><td>git diff</td><td>工作区 vs 暂存区</td></tr>
+    <tr><td>git diff --staged</td><td>暂存区 vs HEAD</td></tr>
+    <tr><td>git diff HEAD</td><td>工作区+暂存区 vs HEAD</td></tr>
+    <tr><td>git diff &lt;commit1&gt; &lt;commit2&gt;</td><td>两个提交之间的差异</td></tr>
+    <tr><td>git diff &lt;branch1&gt; &lt;branch2&gt;</td><td>两个分支之间的差异</td></tr>
+    <tr><td>git diff --name-only</td><td>只显示变更的文件名</td></tr>
+    <tr><td>git diff --stat</td><td>显示变更统计</td></tr>
+  </table></div>
+</div>
+
+<div class="cmd">
+  <div class="cmd-header">
+    <span class="cmd-name">git blame</span>
+    <span class="cmd-desc">查看文件每行的修改信息</span>
+    <span class="cmd-arrow">▶</span>
+  </div>
+  <div class="cmd-body"><table>
+    <tr><td>git blame &lt;file&gt;</td><td>查看每行的作者和提交</td></tr>
+    <tr><td>git blame -L 10,20 &lt;file&gt;</td><td>查看指定行范围</td></tr>
+    <tr><td>git blame -w &lt;file&gt;</td><td>忽略空白变更</td></tr>
+    <tr><td>git blame -M &lt;file&gt;</td><td>检测行移动</td></tr>
+  </table></div>
+</div>
+
+<div class="cmd">
+  <div class="cmd-header">
+    <span class="cmd-name">git reflog</span>
+    <span class="cmd-desc">查看 HEAD 移动记录（找回"丢失"的提交）</span>
+    <span class="cmd-arrow">▶</span>
+  </div>
+  <div class="cmd-body"><table>
+    <tr><td>git reflog</td><td>查看所有 HEAD 移动记录</td></tr>
+    <tr><td>git reflog &lt;branch&gt;</td><td>查看指定分支的移动记录</td></tr>
+    <tr><td>git reflog --date=iso</td><td>显示完整日期</td></tr>
+  </table></div>
+</div>
+
+</section>
+
+<!-- ============ 七~十三：简化的分类 ============ -->
+
+<section class="category" id="cat-tag" data-cat="标签">
+<h3><span class="icon">🏷️</span>标签管理</h3>
+
+<div class="cmd">
+  <div class="cmd-header">
+    <span class="cmd-name">git tag</span>
+    <span class="cmd-desc">创建和管理标签（常用于发布版本）</span>
+    <span class="cmd-arrow">▶</span>
+  </div>
+  <div class="cmd-body"><table>
+    <tr><td>git tag</td><td>列出所有标签</td></tr>
+    <tr><td>git tag -l "v1.*"</td><td>按模式列出标签</td></tr>
+    <tr><td>git tag &lt;name&gt;</td><td>创建轻量标签</td></tr>
+    <tr><td>git tag -a &lt;name&gt; -m "msg"</td><td>创建附注标签</td></tr>
+    <tr><td>git tag -a &lt;name&gt; &lt;commit&gt;</td><td>给历史提交打标签</td></tr>
+    <tr><td>git tag -d &lt;name&gt;</td><td>删除本地标签</td></tr>
+    <tr><td>git push --tags</td><td>推送所有标签</td></tr>
+    <tr><td>git push -d &lt;remote&gt; &lt;tag&gt;</td><td>删除远程标签</td></tr>
+  </table></div>
+</div>
+
+</section>
+
+<section class="category" id="cat-submodule" data-cat="子模块">
+<h3><span class="icon">📦</span>子模块</h3>
+
+<div class="cmd">
+  <div class="cmd-header">
+    <span class="cmd-name">git submodule</span>
+    <span class="cmd-desc">管理嵌套的 Git 仓库</span>
+    <span class="cmd-arrow">▶</span>
+  </div>
+  <div class="cmd-body"><table>
+    <tr><td>git submodule add &lt;url&gt; &lt;path&gt;</td><td>添加子模块</td></tr>
+    <tr><td>git submodule status</td><td>查看子模块状态</td></tr>
+    <tr><td>git submodule update --init --recursive</td><td>初始化并递归更新所有子模块</td></tr>
+    <tr><td>git submodule update --remote</td><td>拉取子模块的最新远程版本</td></tr>
+    <tr><td>git submodule foreach &lt;cmd&gt;</td><td>在每个子模块中执行命令</td></tr>
+  </table></div>
+</div>
+
+</section>
+
+<section class="category" id="cat-worktree" data-cat="工作树">
+<h3><span class="icon">🌲</span>工作树（Worktree）</h3>
+
+<div class="cmd">
+  <div class="cmd-header">
+    <span class="cmd-name">git worktree</span>
+    <span class="cmd-desc">同时检出多个分支到不同目录</span>
+    <span class="cmd-arrow">▶</span>
+  </div>
+  <div class="cmd-body"><table>
+    <tr><td>git worktree list</td><td>列出所有工作树</td></tr>
+    <tr><td>git worktree add &lt;path&gt; &lt;branch&gt;</td><td>将分支检出到指定目录</td></tr>
+    <tr><td>git worktree add -b &lt;new&gt; &lt;path&gt;</td><td>创建新分支并检出</td></tr>
+    <tr><td>git worktree remove &lt;path&gt;</td><td>删除工作树</td></tr>
+    <tr><td>git worktree prune</td><td>清理已删除的工作树记录</td></tr>
+  </table></div>
+</div>
+
+</section>
+
+<section class="category" id="cat-config" data-cat="配置">
+<h3><span class="icon">⚙️</span>配置管理</h3>
+
+<div class="cmd">
+  <div class="cmd-header">
+    <span class="cmd-name">git config</span>
+    <span class="cmd-desc">配置 Git 行为</span>
+    <span class="cmd-arrow">▶</span>
+  </div>
+  <div class="cmd-body"><table>
+    <tr><td>git config --global user.name "Name"</td><td>设置用户名</td></tr>
+    <tr><td>git config --global user.email "e@m"</td><td>设置邮箱</td></tr>
+    <tr><td>git config --global alias.co checkout</td><td>创建别名</td></tr>
+    <tr><td>git config --global pull.rebase true</td><td>pull 默认变基</td></tr>
+    <tr><td>git config --list</td><td>列出所有配置</td></tr>
+    <tr><td>git config --unset &lt;key&gt;</td><td>删除配置项</td></tr>
+    <tr><td colspan="2" style="color:var(--purple);padding-top:6px;">
+      <b>级别（优先级低→高）：</b> --system → --global → --local（默认）
+    </td></tr>
+  </table></div>
+</div>
+
+</section>
+
+<section class="category" id="cat-rewrite" data-cat="历史重写">
+<h3><span class="icon">🔄</span>历史重写</h3>
+
+<div class="cmd">
+  <div class="cmd-header">
+    <span class="cmd-name">git rebase -i</span>
+    <span class="cmd-desc">交互式变基重写历史</span>
+    <span class="cmd-arrow">▶</span>
+  </div>
+  <div class="cmd-body"><table>
+    <tr><td>git rebase -i HEAD~3</td><td>编辑最近 3 个提交</td></tr>
+    <tr><td>git rebase -i &lt;commit&gt;</td><td>编辑指定提交之后的所有提交</td></tr>
+  </table></div>
+</div>
+
+<div class="cmd">
+  <div class="cmd-header">
+    <span class="cmd-name">git cherry-pick</span>
+    <span class="cmd-desc">挑选特定提交应用到当前分支</span>
+    <span class="cmd-arrow">▶</span>
+  </div>
+  <div class="cmd-body"><table>
+    <tr><td>git cherry-pick &lt;commit&gt;</td><td>挑选单个提交</td></tr>
+    <tr><td>git cherry-pick &lt;c1&gt; &lt;c2&gt;</td><td>挑选多个提交</td></tr>
+    <tr><td>git cherry-pick &lt;c1&gt;..&lt;c4&gt;</td><td>挑选一个范围内的提交</td></tr>
+    <tr><td>git cherry-pick --continue</td><td>解决冲突后继续</td></tr>
+    <tr><td>git cherry-pick --abort</td><td>取消挑选</td></tr>
+  </table></div>
+</div>
+
+</section>
+
+<section class="category" id="cat-clean" data-cat="清理">
+<h3><span class="icon">🧹</span>清理与维护</h3>
+
+<div class="cmd">
+  <div class="cmd-header">
+    <span class="cmd-name">git clean</span>
+    <span class="cmd-desc">清理未跟踪的文件</span>
+    <span class="cmd-arrow">▶</span>
+  </div>
+  <div class="cmd-body"><table>
+    <tr><td>git clean -n</td><td>预览将删除的文件</td></tr>
+    <tr><td>git clean -f</td><td>删除未跟踪的文件</td></tr>
+    <tr><td>git clean -fd</td><td>删除未跟踪的文件和目录</td></tr>
+    <tr><td>git clean -fdx</td><td>删除未跟踪和忽略的文件和目录</td></tr>
+  </table></div>
+</div>
+
+<div class="cmd">
+  <div class="cmd-header">
+    <span class="cmd-name">git gc</span>
+    <span class="cmd-desc">垃圾回收，优化仓库</span>
+    <span class="cmd-arrow">▶</span>
+  </div>
+  <div class="cmd-body"><table>
+    <tr><td>git gc</td><td>垃圾回收</td></tr>
+    <tr><td>git gc --aggressive</td><td>激进优化（耗时）</td></tr>
+    <tr><td>git gc --auto</td><td>自动判断是否需要 gc</td></tr>
+  </table></div>
+</div>
+
+<div class="cmd">
+  <div class="cmd-header">
+    <span class="cmd-name">git bisect</span>
+    <span class="cmd-desc">二分查找引入 bug 的提交</span>
+    <span class="cmd-arrow">▶</span>
+  </div>
+  <div class="cmd-body"><table>
+    <tr><td>git bisect start</td><td>开始二分查找</td></tr>
+    <tr><td>git bisect bad</td><td>标记当前提交有问题</td></tr>
+    <tr><td>git bisect good &lt;commit&gt;</td><td>标记某个提交没问题</td></tr>
+    <tr><td>git bisect reset</td><td>结束二分查找</td></tr>
+    <tr><td>git bisect run &lt;script&gt;</td><td>自动执行脚本二分查找</td></tr>
+  </table></div>
+</div>
+
+</section>
+
+<section class="category" id="cat-patch" data-cat="补丁">
+<h3><span class="icon">📨</span>补丁与归档</h3>
+
+<div class="cmd">
+  <div class="cmd-header">
+    <span class="cmd-name">git format-patch</span>
+    <span class="cmd-desc">生成补丁文件</span>
+    <span class="cmd-arrow">▶</span>
+  </div>
+  <div class="cmd-body"><table>
+    <tr><td>git format-patch -&lt;n&gt;</td><td>生成最近 n 次提交的补丁</td></tr>
+    <tr><td>git format-patch &lt;branch&gt;</td><td>生成当前分支相对某分支的补丁</td></tr>
+  </table></div>
+</div>
+
+<div class="cmd">
+  <div class="cmd-header">
+    <span class="cmd-name">git apply</span>
+    <span class="cmd-desc">应用补丁文件</span>
+    <span class="cmd-arrow">▶</span>
+  </div>
+  <div class="cmd-body"><table>
+    <tr><td>git apply &lt;patch&gt;</td><td>应用补丁</td></tr>
+    <tr><td>git apply --check &lt;patch&gt;</td><td>检查补丁是否能应用</td></tr>
+    <tr><td>git apply --stat &lt;patch&gt;</td><td>查看补丁统计</td></tr>
+  </table></div>
+</div>
+
+<div class="cmd">
+  <div class="cmd-header">
+    <span class="cmd-name">git am</span>
+    <span class="cmd-desc">应用邮件格式补丁并创建提交</span>
+    <span class="cmd-arrow">▶</span>
+  </div>
+  <div class="cmd-body"><table>
+    <tr><td>git am &lt;patch&gt;</td><td>应用补丁并提交</td></tr>
+    <tr><td>git am --continue</td><td>解决冲突后继续</td></tr>
+    <tr><td>git am --abort</td><td>取消应用</td></tr>
+  </table></div>
+</div>
+
+<div class="cmd">
+  <div class="cmd-header">
+    <span class="cmd-name">git archive</span>
+    <span class="cmd-desc">创建归档文件</span>
+    <span class="cmd-arrow">▶</span>
+  </div>
+  <div class="cmd-body"><table>
+    <tr><td>git archive -o latest.zip HEAD</td><td>创建 zip 归档</td></tr>
+    <tr><td>git archive --format=tar HEAD | gzip &gt; a.tar.gz</td><td>创建 tar.gz 归档</td></tr>
+  </table></div>
+</div>
+
+</section>
+
+<!-- ============ 常用工作流 ============ -->
+<section class="category" id="cat-workflow" data-cat="工作流">
+<h3><span class="icon">💡</span>常用工作流速查</h3>
+
+<div class="cmd">
+  <div class="cmd-header">
+    <span class="cmd-name">修复最近一次提交</span>
+    <span class="cmd-desc">追加忘记的文件或修改提交消息</span>
+    <span class="cmd-arrow">▶</span>
+  </div>
+  <div class="cmd-body"><table>
+    <tr><td>git add &lt;file&gt;</td><td>暂存忘记的文件</td></tr>
+    <tr><td>git commit --amend --no-edit</td><td>追加到上一次提交</td></tr>
+    <tr><td>git commit --amend -m "new"</td><td>修改提交消息</td></tr>
+  </table></div>
+</div>
+
+<div class="cmd">
+  <div class="cmd-header">
+    <span class="cmd-name">撤销未推送的提交</span>
+    <span class="cmd-desc">三种撤销力度</span>
+    <span class="cmd-arrow">▶</span>
+  </div>
+  <div class="cmd-body"><table>
+    <tr><td>git reset --soft HEAD~1</td><td>撤销 commit，更改保留在暂存区</td></tr>
+    <tr><td>git reset HEAD~1</td><td>撤销 commit+add，更改保留在工作区</td></tr>
+    <tr><td>git reset --hard HEAD~1</td><td>彻底丢弃 <span class="tag tag-danger">危险</span></td></tr>
+  </table></div>
+</div>
+
+<div class="cmd">
+  <div class="cmd-header">
+    <span class="cmd-name">合并多个提交（Squash）</span>
+    <span class="cmd-desc">将多个 commit 合并为一个</span>
+    <span class="cmd-arrow">▶</span>
+  </div>
+  <div class="cmd-body"><table>
+    <tr><td>git rebase -i HEAD~3</td><td>编辑最近 3 个提交</td></tr>
+    <tr><td colspan="2">编辑器中将要合并的提交标记为 <b>squash</b> 或 <b>fixup</b></td></tr>
+  </table></div>
+</div>
+
+<div class="cmd">
+  <div class="cmd-header">
+    <span class="cmd-name">变基到最新 main</span>
+    <span class="cmd-desc">同步主分支的最新代码</span>
+    <span class="cmd-arrow">▶</span>
+  </div>
+  <div class="cmd-body"><table>
+    <tr><td>git fetch origin</td><td>获取远程更新</td></tr>
+    <tr><td>git rebase origin/main</td><td>变基到最新 main</td></tr>
+    <tr><td colspan="2">或一行搞定：<b>git pull --rebase origin main</b></td></tr>
+  </table></div>
+</div>
+
+<div class="cmd">
+  <div class="cmd-header">
+    <span class="cmd-name">回退已推送的提交</span>
+    <span class="cmd-desc">安全方式：用 revert 而不是 reset</span>
+    <span class="cmd-arrow">▶</span>
+  </div>
+  <div class="cmd-body"><table>
+    <tr><td>git revert &lt;commit&gt;</td><td>创建新提交来撤销</td></tr>
+    <tr><td>git push</td><td>推送撤销提交</td></tr>
+  </table></div>
+</div>
+
+<div class="cmd">
+  <div class="cmd-header">
+    <span class="cmd-name">暂存工作处理紧急任务</span>
+    <span class="cmd-desc">用 stash 临时保存进度</span>
+    <span class="cmd-arrow">▶</span>
+  </div>
+  <div class="cmd-body"><table>
+    <tr><td>git stash</td><td>暂存当前更改</td></tr>
+    <tr><td>... 处理紧急任务 ...</td><td></td></tr>
+    <tr><td>git stash pop</td><td>恢复之前的工作</td></tr>
+  </table></div>
+</div>
+
+<div class="cmd">
+  <div class="cmd-header">
+    <span class="cmd-name">找回丢失的提交</span>
+    <span class="cmd-desc">用 reflog 找回误删的提交</span>
+    <span class="cmd-arrow">▶</span>
+  </div>
+  <div class="cmd-body"><table>
+    <tr><td>git reflog</td><td>找到丢失提交的 hash</td></tr>
+    <tr><td>git checkout &lt;hash&gt;</td><td>切换到该提交</td></tr>
+    <tr><td>git switch -c rescue-branch</td><td>从该提交创建分支恢复</td></tr>
+  </table></div>
+</div>
+
+</section>
+
+<!-- ============ .gitignore ============ -->
+<section class="category" id="cat-ignore" data-cat="gitignore">
+<h3><span class="icon">🚫</span>.gitignore 参考</h3>
+
+<div class="cmd">
+  <div class="cmd-header">
+    <span class="cmd-name">.gitignore 语法与模板</span>
+    <span class="cmd-desc">常用忽略规则</span>
+    <span class="cmd-arrow">▶</span>
+  </div>
+  <div class="cmd-body"><table>
+    <tr><td>file.txt</td><td>忽略指定文件</td></tr>
+    <tr><td>*.log</td><td>忽略所有 .log 文件</td></tr>
+    <tr><td>build/</td><td>忽略整个目录</td></tr>
+    <tr><td>!important.log</td><td>取反：不忽略此文件</td></tr>
+    <tr><td colspan="2" style="color:var(--purple);padding-top:6px;">
+      <b>常用模板：</b> node_modules/ &nbsp; dist/ &nbsp; build/ &nbsp; .vscode/ &nbsp; .idea/ &nbsp; .DS_Store &nbsp; .env &nbsp; *.log
+    </td></tr>
+  </table></div>
+</div>
+
+</section>
+
+</main>
+
+<button class="back-top" id="backTop" title="回到顶部">⬆</button>
+
+<script src="app.js" defer></script>
+
+</body>
+</html>
