@@ -3,13 +3,13 @@ var CACHE_NAME = 'git-cheat-v1';
 
 // Resources to precache on install
 var PRECACHE_URLS = [
-  '/git-pwa-cheat/',
-  '/git-pwa-cheat/index.html',
-  '/git-pwa-cheat/style.css',
-  '/git-pwa-cheat/app.js',
-  '/git-pwa-cheat/manifest.json',
-  '/git-pwa-cheat/icon-192.png',
-  '/git-pwa-cheat/icon-512.png'
+  './',
+  './index.html',
+  './style.css',
+  './app.js',
+  './manifest.json',
+  './icon-192.png',
+  './icon-512.png'
 ];
 
 // ---------- install: precache all static assets ----------
@@ -57,7 +57,7 @@ self.addEventListener('fetch', function(event) {
         return response;
       }).catch(function() {
         return caches.match(event.request).then(function(cached) {
-          return cached || caches.match('/git-pwa-cheat/');
+          return cached || caches.match('./');
         });
       })
     );

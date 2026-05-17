@@ -12,8 +12,17 @@
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="icon" href="icon-192.png">
 <link rel="stylesheet" href="style.css">
+<noscript>
+<style>
+  .cmd-body { display: block !important; }
+  .cmd-arrow { display: none; }
+</style>
+</noscript>
 </head>
 <body>
+
+<button type="button" class="hamburger" id="hamburger" aria-label="菜单">☰</button>
+<div class="overlay" id="overlay"></div>
 
 <!-- ============ SIDEBAR ============ -->
 <nav>
@@ -44,7 +53,7 @@
 <div class="no-result" id="noResult">没有匹配的命令</div>
 
 <!-- ============ 一、仓库管理 ============ -->
-<section class="category" id="cat-repo" data-cat="仓库管理">
+<section class="category" id="cat-repo">
 <h3><span class="icon">🏠</span>仓库管理</h3>
 
 <div class="cmd">
@@ -95,7 +104,7 @@
 </section>
 
 <!-- ============ 二、基本工作流 ============ -->
-<section class="category" id="cat-basic" data-cat="基本工作流">
+<section class="category" id="cat-basic">
 <h3><span class="icon">📝</span>基本工作流</h3>
 
 <div class="cmd">
@@ -169,7 +178,7 @@
 </section>
 
 <!-- ============ 三、分支管理 ============ -->
-<section class="category" id="cat-branch" data-cat="分支管理">
+<section class="category" id="cat-branch">
 <h3><span class="icon">🌿</span>分支管理</h3>
 
 <div class="cmd">
@@ -261,7 +270,7 @@
 </section>
 
 <!-- ============ 四、远程协作 ============ -->
-<section class="category" id="cat-remote" data-cat="远程协作">
+<section class="category" id="cat-remote">
 <h3><span class="icon">☁️</span>远程协作</h3>
 
 <div class="cmd">
@@ -315,7 +324,7 @@
 </section>
 
 <!-- ============ 五、撤销与回退 ============ -->
-<section class="category" id="cat-undo" data-cat="撤销与回退">
+<section class="category" id="cat-undo">
 <h3><span class="icon">↩️</span>撤销与回退</h3>
 
 <div class="cmd">
@@ -386,7 +395,7 @@
 </section>
 
 <!-- ============ 六、查看历史 ============ -->
-<section class="category" id="cat-history" data-cat="查看历史">
+<section class="category" id="cat-history">
 <h3><span class="icon">🔍</span>查看历史与追溯</h3>
 
 <div class="cmd">
@@ -451,7 +460,7 @@
 
 <!-- ============ 七~十三：简化的分类 ============ -->
 
-<section class="category" id="cat-tag" data-cat="标签">
+<section class="category" id="cat-tag">
 <h3><span class="icon">🏷️</span>标签管理</h3>
 
 <div class="cmd">
@@ -474,7 +483,7 @@
 
 </section>
 
-<section class="category" id="cat-submodule" data-cat="子模块">
+<section class="category" id="cat-submodule">
 <h3><span class="icon">📦</span>子模块</h3>
 
 <div class="cmd">
@@ -494,7 +503,7 @@
 
 </section>
 
-<section class="category" id="cat-worktree" data-cat="工作树">
+<section class="category" id="cat-worktree">
 <h3><span class="icon">🌲</span>工作树（Worktree）</h3>
 
 <div class="cmd">
@@ -514,7 +523,7 @@
 
 </section>
 
-<section class="category" id="cat-config" data-cat="配置">
+<section class="category" id="cat-config">
 <h3><span class="icon">⚙️</span>配置管理</h3>
 
 <div class="cmd">
@@ -538,7 +547,7 @@
 
 </section>
 
-<section class="category" id="cat-rewrite" data-cat="历史重写">
+<section class="category" id="cat-rewrite">
 <h3><span class="icon">🔄</span>历史重写</h3>
 
 <div class="cmd">
@@ -570,7 +579,7 @@
 
 </section>
 
-<section class="category" id="cat-clean" data-cat="清理">
+<section class="category" id="cat-clean">
 <h3><span class="icon">🧹</span>清理与维护</h3>
 
 <div class="cmd">
@@ -617,7 +626,7 @@
 
 </section>
 
-<section class="category" id="cat-patch" data-cat="补丁">
+<section class="category" id="cat-patch">
 <h3><span class="icon">📨</span>补丁与归档</h3>
 
 <div class="cmd">
@@ -673,7 +682,7 @@
 </section>
 
 <!-- ============ 常用工作流 ============ -->
-<section class="category" id="cat-workflow" data-cat="工作流">
+<section class="category" id="cat-workflow">
 <h3><span class="icon">💡</span>常用工作流速查</h3>
 
 <div class="cmd">
@@ -768,7 +777,7 @@
 </section>
 
 <!-- ============ .gitignore ============ -->
-<section class="category" id="cat-ignore" data-cat="gitignore">
+<section class="category" id="cat-ignore">
 <h3><span class="icon">🚫</span>.gitignore 参考</h3>
 
 <div class="cmd">
@@ -792,7 +801,7 @@
 
 </main>
 
-<button class="back-top" id="backTop" title="回到顶部">⬆</button>
+<button type="button" class="back-top" id="backTop" title="回到顶部">⬆</button>
 
 <script src="app.js" defer></script>
 
